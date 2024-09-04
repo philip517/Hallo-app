@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
     // Prepare and execute SQL query
-    $sql = "SELECT id, password FROM users WHERE username = :username";
+    $sql = "SELECT id, password FROM user WHERE username = :username";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
