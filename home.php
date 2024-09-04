@@ -135,7 +135,7 @@ if (!isset($_SESSION['user_id'])) {
                     <h2 style="padding-top: 0px; margin-top: 39px">
                         <a class="btn btn-primary text-capitalize fw-semibold text-bg-success" role="button"
                             data-bss-disabled-mobile="true" data-bss-hover-animate="pulse"
-                            style="border-radius: 5px; border-style: none" href="edit.php">Add New</a>
+                            style="border-radius: 5px; border-style: none" href="add.php">Add New</a>
                     </h2>
                 </div>
                 <div class="row" style="overflow: visible">
