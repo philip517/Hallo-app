@@ -2,7 +2,7 @@
 session_start();
 
 // Include the database connection
-require 'db_connect.php';
+require 'config/conn.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
     // Prepare and execute SQL query
-    $sql = "SELECT id, password FROM user WHERE username = :username";
+    $sql = "SELECT id, password FROM user WHERE name = :username";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
@@ -30,7 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Invalid username or password
-            echo "Invalid username or password.";
+            $_SESSION['error'] = 'Wrong username or password';
+            header("Location: index.php");
+        
+            exit();
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

@@ -1,5 +1,10 @@
 <?php 
-    require "config/conn.php";
+session_start();
+require "config/conn.php";
+
+if ( isset($_SESSION['error'])){
+    echo $_SESSION['error'];
+}
 
 ?>
 
