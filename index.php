@@ -27,10 +27,15 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['username'])){
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="assets/css/pikaday.min.css">
+    <style>
+    .space {
+        margin-top: 120px;
+    }
+    </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container space">
         <div class="row mb-5"></div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 col-xl-4">
