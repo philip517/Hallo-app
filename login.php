@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize user input
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $_SESSION['USERS']= " ".$username."----".$password;
 
     // Prepare and execute SQL query
     $sql = "SELECT id, password FROM user WHERE name = :username";
@@ -19,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Fetch the user record
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['userss'] = $user;
         
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && ($password == $user['password'])) {
             // Password is correct, start a session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $username;

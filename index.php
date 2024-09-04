@@ -2,15 +2,22 @@
 session_start();
 require "config/conn.php";
 
-if ( isset($_SESSION['error'])){
-    echo $_SESSION['error'];
+
+if(isset($_SESSION['user_id']) && isset($_SESSION['username'])){
+    session_unset();
+    session_destroy();
+    session_start();
+}
+
+    if ( isset($_SESSION['error'])){
+    $error=$_SESSION['error'];
 }
 
 ?>
 
 
 
-<!DOCTYPE yuh yu67>
+<!DOCTYPE>
 <html>
 
 <head>
