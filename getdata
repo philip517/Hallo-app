@@ -1,0 +1,26 @@
+<?php
+$sql = "SELECT id, name, email FROM users";
+$result = $conn->query($sql);
+
+$data = [];
+
+if ($result->num_rows > 0) {
+    // Store each row of data in the array
+    while($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+} else {
+    echo "0 results";
+}
+?>
+
+
+
+
+<?php foreach($data as $user): ?>
+<tr>
+    <td><?php echo $user['id']; ?></td>
+    <td><?php echo $user['name']; ?></td>
+    <td><?php echo $user['email']; ?></td>
+</tr>
+<?php endforeach; ?>
