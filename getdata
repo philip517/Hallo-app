@@ -1,20 +1,15 @@
 <?php
 $sql = "SELECT id, name, email FROM users";
-$result = $conn->query($sql);
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
 
-$data = [];
-
-if ($result->num_rows > 0) {
-    // Store each row of data in the array
-    while($row = $result->fetch_assoc()) {
-        $data[] = $row;
-    }
-} else {
-    echo "0 results";
-}
+// Fetch all results into an associative array
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
+<?php if (empty($data)): ?>
+<p>No records found.</p>
+<?php else: ?>
 
 
 <?php foreach($data as $user): ?>

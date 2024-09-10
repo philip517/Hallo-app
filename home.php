@@ -1,12 +1,23 @@
 <?php
 session_start();
+require "config/conn.php";
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit();
 }
+
+
+$sql = "SELECT * FROM website";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+// Fetch all results into an associative array
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
+
 
 <!DOCTYPE html>
 <html style="overflow: scroll">
@@ -138,7 +149,9 @@ if (!isset($_SESSION['user_id'])) {
                             style="border-radius: 5px; border-style: none" href="add.php">Add New</a>
                     </h2>
                 </div>
+                <?php foreach($data as $website): ?>
                 <div class="row" style="overflow: visible">
+
                     <div class="col-md-6 col-lg-4" data-bss-hover-animate="pulse"
                         style="padding-top: 11px; padding-bottom: 0px">
                         <div class="project-card-no-image pt-lg-3 mb-lg-4 pb-lg-3 ms-lg-0 me-lg-0 pe-lg-5" style="
@@ -147,7 +160,7 @@ if (!isset($_SESSION['user_id'])) {
                   padding-bottom: 0px;
                 ">
                             <h3 class="pt-lg-0 pb-lg-0 mb-lg-3 mt-lg-2" style="margin-bottom: 29px">
-                                Lorem Ipsum
+                                <?php echo $website['name']; ?>
                             </h3>
                             <a class="btn btn-outline-primary btn-sm" role="button" href="#modal-1"
                                 style="margin-bottom: 3px; padding-top: 3px; margin-top: 4px" data-bs-target="#modal-1"
@@ -155,6 +168,7 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>
