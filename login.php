@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
 } else {
-    echo "Invalid request method.";
+    header("Location: index.php");
+
 }
 ?>
