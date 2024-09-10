@@ -16,29 +16,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_EMAIL);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_EMAIL);
+    
 
+  try {
+    //$row = $_GET['id'];
+    $stmt = $pdo->prepare("SELECT password FROM website WHERE url=:url");
+    $stmt->execute(['url' => $url]);
+    // Fetch all results into an associative array
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e) {
+    $_SESSION['msg'] = "Error: " . $e->getMessage();
+    header("Location: add.php");
+  }
 
     // Prepare SQL query to insert data
-    $sql = "INSERT INTO website (name,url,description,password) VALUES (:name, :url,:description,:password)";
+    if($row){
+        if($row['password']===$password){
+            $_SESSION['exists'] = ['message'=>'Account Already Exist','name'=>$name,'url'=>$url,'password'=>$password,'description'=>$description];
+            header("Location:add.php");
+        }
+    }else{
+        
+        try {
+            // Prepare and execute the statement
+            $stmt = $pdo->prepare("INSERT INTO website (name,url,description,password) VALUES (:name, :url,:description,:password)");
+            $stmt->execute([
+            ':name'=> $name,
+            ':url'=> $url,
+            ':description'=> $description,
+            ':password'=> $password]);
+        
+            $_SESSION['msg'] =  "Data successfully inserted!";
+            header("Location: home.php");
 
-    try {
-        // Prepare and execute the statement
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':url', $url);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':password', $password);
-
-        // Execute the statement
-        $stmt->execute();
-        $_SESSION['msg'] =  "Data successfully inserted!";
-        header("Location: home.php");
-
-    } catch (PDOException $e) {
-        $_SESSION['msg'] = "Error: " . $e->getMessage();
-        header("Location: home.php");
+        } catch (PDOException $e) {
+            $_SESSION['msg'] = "Error: " . $e->getMessage();
+            header("Location: add.php");
+        }
     }
+    
+    
 } else {
-    echo "Invalid request method.";
+    header("Location: home.php");
 }
 ?>

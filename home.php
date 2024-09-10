@@ -17,7 +17,7 @@ if(isset($_GET['id'])){
 if(isset($_SESSION['website_id'])){
     $id=$_SESSION['website_id'];
     //$processeddata = $_GET['id'];
-    $sql = "SELECT * FROM website WHERE id=$id ORDER BY name ASC";
+    $sql = "SELECT * FROM website WHERE id=$id ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -30,7 +30,7 @@ if(isset($_SESSION['msg'])){
 }
 
 
-$sql = "SELECT * FROM website";
+$sql = "SELECT * FROM website ORDER BY name ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 // Fetch all results into an associative array
@@ -198,7 +198,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   margin-bottom: 39px;
                   padding-bottom: 0px;
                 ">
-                            <h3 class="pt-lg-0 pb-lg-0 mb-lg-3 mt-lg-2" style="margin-bottom: 29px">
+                            <h3 class="text-capitalize pt-lg-0 pb-lg-0 mb-lg-3 mt-lg-2" style="margin-bottom: 29px">
                                 <?php echo $website['name'];
                                 
                                 ?>

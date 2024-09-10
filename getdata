@@ -18,4 +18,4 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <td><?php echo $user['name']; ?></td>
     <td><?php echo $user['email']; ?></td>
 </tr>
-<?php endforeach; ?>
+<?php  endforeach; ?>

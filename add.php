@@ -10,7 +10,27 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+if(isset($_SESSION['msg'])){
+    echo '<h1>'.$_SESSION['msg'].'</h1>';
+    unset($_SESSION['msg']);
+}
+///
+if(isset( $_SESSION['exists'])){
+    $data = $_SESSION['exists'];
+    $message = $data['message'];
+    $name = $data['name'];
+    $url = $data['url'];
+    $password = $data['password'];
+    $description = $data['description'];
 
+}else{
+    $message = "";
+    $name = "...";
+    $url = "...";
+    $password = "...";
+    $description = "...";
+    
+}
 
 ?>
 
@@ -27,34 +47,33 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <?
-    
-    echo $text;
-    
-    ?>
     <main class="page contact-page">
         <section class="portfolio-block contact" style="padding-top: 50px;">
             <div class="container">
                 <div class="heading">
                     <h2>&nbsp;Account</h2>
+                    <h2 style="color:red;"><?php echo $message;?></h2>
                 </div>
                 <form action="submit.php" method="post" style="width: 493px;">
                     <div class="mb-3"><label class="form-label text-muted" for="name" style="text-align: right;">Website
                             Name</label><input class="form-control item" type="text" name="name" id="name"
-                            style="width: 399px;" required>
+                            style="width: 399px;" placeholder=<?php echo $name;?> required>
                     </div>
                     <div class="mb-3"><label class="form-label text-muted" for="url" style="text-align: right;">Website
                             URL</label><input class="form-control item" name="url" type="text" id="subject"
-                            style="width: 399px;" required></div>
+                            style="width: 399px;" placeholder=<?php echo $url;?> required></div>
                     <div class="mb-3"><label class="form-label text-muted" for="password"
                             style="text-align: right;">Website Password</label><input name="password"
-                            class="form-control item" type="text" id="password" style="width: 399px;" required></div>
+                            class="form-control item" type="password" id="password" style="width: 399px;"
+                            placeholder=<?php echo $password;?> required></div>
                     <div class="mb-3"><label class="form-label text-muted" for="Description"
                             style="text-align: right;">Description</label><textarea class="form-control item"
-                            id="message" style="width: 399px;" name="description" required></textarea></div>
+                            id="message" style="width: 399px;" name="description" placeholder=<?php echo $description;?>
+                            required></textarea></div>
                     <div class="mb-3"><button class="btn btn-success btn-lg d-block w-100" type="submit" name="submit"
-                            style="width: 298px;">Submit Form</button></div>
+                            style="width: 298px;">Add New Account</button></div>
                 </form>
+                <?php unset($_SESSION['exists'])?>
             </div>
         </section>
     </main>
