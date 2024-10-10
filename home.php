@@ -4,10 +4,15 @@ require "config/conn.php";
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
+    header("Location: index.php");
     exit();
 }
 
+// if(isset($_SESSION['msg'])){
+//     //echo '<h1>'.$_SESSION['msg'].'</h1>';
+
+   
+// }
 if(isset($_GET['id'])){
     $_SESSION['website_id']=$_GET['id'];
     unset($_GET);
@@ -25,10 +30,13 @@ if(isset($_SESSION['website_id'])){
     $processeddata = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-if(isset($_SESSION['msg'])){
-    $text = $_SESSION['msg'];
-}
+// if(isset($_SESSION['msg'])){
+//     $text = $_SESSION['msg'];
+// }
 
+if(isset($_SESSION['text'])){
+    $texts = $_SESSION['mtext'];
+}
 
 $sql = "SELECT * FROM website ORDER BY name ASC";
 $stmt = $pdo->prepare($sql);
@@ -45,7 +53,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Projects - Brand</title>
+    <title>Home</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap" />
     <link rel="stylesheet" href="assets/css/animate.min.css" />
@@ -54,38 +62,37 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
+
+    <?php ?>
     <main class="page projets-page">
         <section class="portfolio-block project-no-images" style="padding-top: 35px">
             <div class="container" style="background: var(--bs-btn-disabled-color)">
+
+                <!-- notification modal -->
+
+
                 <div class="modal fade justify-content-center align-items-center" role="dialog" tabindex="-1"
-                    id="modal-2">
+                    id="modal-9" style="padding-top: 158px">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header text-bg-warning" style="width: 498px">
-                                <h4 class="modal-title">Modal Title</h4>
+                            <div class="modal-header text-bg-success" style="width: 498px">
+                                <h4 class="modal-title">Congrats</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Delete Website info ?</p>
+                                <?php  echo $_SESSION['msg'];
+                                 
+                                
+
+                                ?>
                             </div>
-                            <div class="modal-footer text-center justify-content-center">
-                                <button class="btn btn-danger" type="submit" data-bs-target="#" style="
-                      border-style: none;
-                      width: 60.1px;
-                      border-radius: 0px;
-                    ">
-                                    Yes</button><a class="btn btn-success" role="button" data-bs-target="#modal-1"
-                                    data-bs-toggle="modal" style="
-                      border-style: none;
-                      border-radius: 0px;
-                      margin-left: 12px;
-                      width: 60.1px;
-                    ">No</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
+
+                <!-- delete modal -->
                 <div class="modal fade" role="dialog" tabindex="-1" id="modal-1" aria-hidden="true"
                     style="padding-top: 158px">
                     <div class="modal-dialog" role="document">
@@ -119,14 +126,14 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             </div>
                             <div class="modal-footer" style="padding-top: 0px">
-                                <button class="btn btn-primary text-bg-danger" type="button" data-bs-target="#modal-2"
-                                    data-bs-toggle="modal" style="
+                                <a class="btn btn-primary text-bg-danger" type="button"
+                                    href="del.php?id=<?php echo $processeddata['id'] ;?>" style="
                       border-style: none;
                       border-radius: 0px;
                       margin-right: 11px;
                     ">
-                                    Delete</button><a class="btn btn-primary text-bg-warning" role="button"
-                                    href="edit.php" style="
+                                    Delete</a><a class="btn btn-primary text-bg-warning" role="button"
+                                    href="edit.php?id=<?php echo $processeddata['id'] ;?>" style="
                       border-style: none;
                       border-radius: 0px;
                       margin-right: 13px;
@@ -182,6 +189,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <h1>
                     <?echo $text;?>
+                    <?echo $texts;?>
                 </h1>
 
                 <div class="row" style="overflow: visible">
@@ -228,10 +236,11 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php
     //code to open modal if processeddata is set 
-    if(isset($processeddata)):?>
+   if(isset($processeddata)):?>
     <script type="text/javascript">
     $(document).ready(function() {
         $('#modal-1').modal('show');
+        alert
     });
     </script>
 
@@ -240,6 +249,23 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $('#modal-1').modal('hide');
     </script>
     <?php endif;?>
+
+    <?php
+    //code to open modal if processeddata is set 
+    if(isset($_SESSION['msg'])):?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#modal-9').modal('show');
+        alert
+    });
+    </script>
+
+    <?php else: ?>
+    <script type="text/javascript">
+    $('#modal-9').modal('hide');
+    </script>
+    <?php endif;?>
+
 </body>
 
 </html>

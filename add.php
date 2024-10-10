@@ -10,10 +10,10 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if(isset($_SESSION['msg'])){
-    echo '<h1>'.$_SESSION['msg'].'</h1>';
-    unset($_SESSION['msg']);
-}
+// if(isset($_SESSION['msg'])){
+//     echo '<h1>'.$_SESSION['msg'].'</h1>';
+//     unset($_SESSION['msg']);
+// }
 ///
 if(isset( $_SESSION['exists'])){
     $data = $_SESSION['exists'];
@@ -54,7 +54,7 @@ if(isset( $_SESSION['exists'])){
                     <h2>&nbsp;Account</h2>
                     <h2 style="color:red;"><?php echo $message;?></h2>
                 </div>
-                <form action="submit.php" method="post" style="width: 493px;">
+                <form action="submit.php?id=1" method="post" style="width: 493px;">
                     <div class="mb-3"><label class="form-label text-muted" for="name" style="text-align: right;">Website
                             Name</label><input class="form-control item" type="text" name="name" id="name"
                             style="width: 399px;" placeholder=<?php echo $name;?> required>

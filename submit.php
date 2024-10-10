@@ -2,20 +2,20 @@
 
 session_start();
 require "config/conn.php";
-
+echo '<h1> '.$_GET['id'].'</h1>';
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
 
+if (($_SERVER["REQUEST_METHOD"] == "POST")) {
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data and sanitize it
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-    $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_EMAIL);
-    $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_EMAIL);
+    $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
     
 
   try {
@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['msg'] = "Error: " . $e->getMessage();
     header("Location: add.php");
   }
-
     // Prepare SQL query to insert data
     if($row){
         if($row['password']===$password){
@@ -51,13 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: home.php");
 
         } catch (PDOException $e) {
-            $_SESSION['msg'] = "Error: " . $e->getMessage();
+
+            $_SESSION['msg'] = $dum."Error FROM SUBMIT: ". $e->getMessage();
             header("Location: add.php");
         }
     }
     
     
-} else {
+} elseif(($_SERVER["REQUEST_METHOD"] == "POST") && ($_GET['id']==2)) {
     header("Location: home.php");
+}else{
+    header("Location: home.php");
+
 }
 ?>
