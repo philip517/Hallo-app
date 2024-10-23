@@ -213,9 +213,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 ?>
                             </h3>
-                            <!-- <a class="btn btn-outline-primary btn-sm" role="button" href="#modal-1 " 
-                                style="margin-bottom: 3px; padding-top: 3px; margin-top: 4px" data-bs-target="#modal-1" 
-                            -->
+
                             <a class="btn btn-outline-primary btn-sm" role="button"
                                 href="home.php?id=<?php echo $id;?> "
                                 style="margin-bottom: 3px; padding-top: 3px; margin-top: 4px">See More</a>
@@ -253,7 +251,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif;?>
 
     <?php
-    //code to open modal if processeddata is set 
+    //code to open congrats modal if processeddata is set 
     if(isset($_SESSION['msg'])):?>
     <script type="text/javascript">
     $(document).ready(function() {

@@ -8,8 +8,9 @@ In the creation of this app i utilized Bootstrap studio for the UI and some hand
 2. Create a user named testUser and the password test1234
 3. Create a database named userData
 4. Import the Database file found in the config/ folder ,
-   C
-   copy the HALLO-APP folder into your localhost directory
+5. copy the HALLO-APP folder into your localhost directory
 
 on windows this will be in somewhere in C:XAMPP/htdocs/
 on linux (i am currently using Ubuntu 22.04.5 LTS ) somewhere in /opt/lampp/htdocs/
+
+6. The default user for the app is user1 and the password is test1234
