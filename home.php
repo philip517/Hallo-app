@@ -30,9 +30,12 @@ if(isset($_SESSION['website_id'])){
     $processeddata = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// if(isset($_SESSION['msg'])){
-//     $text = $_SESSION['msg'];
-// }
+if(isset($_POST['search'])){
+    
+    $key = $_POST['search'];
+    header("Location:search.php?key=".$key." ");
+    
+}
 
 if(isset($_SESSION['text'])){
     $texts = $_SESSION['mtext'];
@@ -42,7 +45,13 @@ $sql = "SELECT * FROM website ORDER BY name ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 // Fetch all results into an associative array
+
+if (isset($_SESSION['data'])){
+    $data = $_SESSION['data'];
+}else{
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
 
 ?>
 
@@ -82,9 +91,6 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="modal-body">
                                 <?php  echo $_SESSION['msg'];
-                                 
-                                
-
                                 ?>
                             </div>
 
@@ -142,11 +148,11 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 </div>
-                <div class="heading" style="text-align: right">
-                    <form class="d-flex justify-content-center align-items-center pulse animated">
+                <div class="heading" style="text-align: right ;margin-top:100px;">
+                    <form method="post" class="d-flex justify-content-center align-items-center pulse animated">
                         <h2 class="d-lg-flex justify-content-lg-center align-items-lg-center"
                             style="text-align: center; height: 43px">
-                            <input class="form-control" type="text" style="
+                            <input class="form-control" name="search" type="text" style="
                     padding-top: 0px;
                     padding-bottom: 0px;
                     width: 309.6px;
@@ -155,9 +161,8 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     padding-left: 21px;
                     border-top-right-radius: 0px;
                     border-bottom-right-radius: 0px;
-                  " placeholder="search name" /><button
-                                class="btn btn-primary text-capitalize fw-semibold text-bg-secondary" type="button"
-                                style="
+                  " placeholder="search name" /><input
+                                class="btn btn-primary text-capitalize fw-semibold text-bg-secondary" style="
                     border-radius: 5px;
                     padding-left: 0px;
                     height: 39px;
@@ -173,9 +178,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     border-top-left-radius: 0px;
                     border-bottom-left-radius: 0px;
                     border-style: none;
-                  ">
-                                Search
-                            </button>
+                  " type="submit" value="Search">
                         </h2>
                     </form>
                     <h2 style="padding-top: 0px; margin-top: 39px">
