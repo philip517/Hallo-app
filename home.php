@@ -50,7 +50,6 @@ if (isset($_SESSION['data'])){
     $data = $_SESSION['data'];
 }else{
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 }
 
 ?>

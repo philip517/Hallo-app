@@ -10,10 +10,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if(isset($_SESSION['msg'])){
-    echo '<h1>'.$_SESSION['msg'].'</h1>';
     unset($_SESSION['msg']);
-}
+
 // ///
 if(isset( $_GET['id'])){
    
