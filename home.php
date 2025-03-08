@@ -7,11 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
-
-// if(isset($_SESSION['msg'])){
-//     //echo '<h1>'.$_SESSION['msg'].'</h1>';
-
-   
+  
 // }
 if(isset($_GET['id'])){
     $_SESSION['website_id']=$_GET['id'];
@@ -84,7 +80,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header text-bg-success" style="width: 498px">
-                                <h4 class="modal-title">Congrats</h4>
+                                <h4 class="modal-title">Info</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>

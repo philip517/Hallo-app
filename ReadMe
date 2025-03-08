@@ -1,6 +1,6 @@
 This is a simple password archiving app that i made to help me manage passwords of my many accounts on various websites, Although it may be counter intuitive and honestly a bit of a security risk if the web app or its data is accessed by wrong individuals , it was my intention to build an app that seemed useful to the common man and also in orderto test my skills of web design.
 
-In the creation of this app i utilized Bootstrap studio for the UI and some hand plain PHP,Javascript , As well as the Incoperation of ChatGPT.
+In the creation of this app i utilized Bootstrap studio for the UI and some hand plain PHP,Javascript.
 
 --------------------NOTES--------------------
 

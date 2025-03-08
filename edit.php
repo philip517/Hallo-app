@@ -25,7 +25,12 @@ if(isset( $_GET['id'])){
     header('Location:edit.php?id='.$_GET['id']);
    
 }
-    $message = $data['message'];
+    if(isset($data['message'])){
+        $message = $data['message'];
+    }else{
+    $message = '';
+
+    }
     $name = $data['name'];
     $url = $data['url'];
     $password = $data['password'];

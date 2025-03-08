@@ -1,17 +1,15 @@
 <?php
 
 session_start();
+
 require "config/conn.php";
+
+unset($_SESSION['msg']);
+unset($_SESSION['website_id']);
 // echo $_GET['key'];
 if(isset($_GET['key'])){
      
     echo $_GET['key'];
-	if($_GET['key']==""){
-	$_SESSION['msg'] = 'Missing data';
-    header("Location: home.php");
-    return;
-	}
-
 	$key = $_GET['key'];
     $stmt = $pdo->query("SELECT * FROM website WHERE name LIKE '%$key%' ");
     $row_num = $stmt->rowCount();
