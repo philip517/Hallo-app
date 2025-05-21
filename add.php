@@ -10,11 +10,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// if(isset($_SESSION['msg'])){
-//     echo '<h1>'.$_SESSION['msg'].'</h1>';
-//     unset($_SESSION['msg']);
-// }
-///
 if(isset( $_SESSION['exists'])){
     $data = $_SESSION['exists'];
     $message = $data['message'];
@@ -31,16 +26,13 @@ if(isset( $_SESSION['exists'])){
     $description = "...";
     
 }
-
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Contact - Brand</title>
+    <title>Add Website</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="assets/css/pikaday.min.css">
@@ -50,9 +42,13 @@ if(isset( $_SESSION['exists'])){
     <main class="page contact-page">
         <section class="portfolio-block contact" style="padding-top: 50px;">
             <div class="container">
+            <a class="btn btn-primary text-capitalize fw-semibold text-bg-warning" role="button"
+                            data-bss-disabled-mobile="true" data-bss-hover-animate="pulse"
+                            style="border-radius: 5px; border-style: none" href="home.php">Back</a>
                 <div class="heading">
-                    <h2>&nbsp;Account</h2>
+                    <h2>&nbsp;Add New Website</h2>
                     <h2 style="color:red;"><?php echo $message;?></h2>
+                    
                 </div>
                 <form action="submit.php?id=1" method="post" style="width: 493px;">
                     <div class="mb-3"><label class="form-label text-muted" for="name" style="text-align: right;">Website

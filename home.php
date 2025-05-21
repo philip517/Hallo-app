@@ -50,7 +50,6 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-
 <!DOCTYPE html>
 <html style="overflow: scroll">
 
@@ -73,7 +72,6 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="container" style="background: var(--bs-btn-disabled-color)">
 
                 <!-- notification modal -->
-
 
                 <div class="modal fade justify-content-center align-items-center" role="dialog" tabindex="-1"
                     id="modal-9" style="padding-top: 158px">
@@ -183,6 +181,9 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a class="btn btn-primary text-capitalize fw-semibold text-bg-success" role="button"
                             data-bss-disabled-mobile="true" data-bss-hover-animate="pulse"
                             style="border-radius: 5px; border-style: none" href="add.php">Add New</a>
+                        <a class="btn btn-primary text-capitalize fw-semibold text-bg-danger" role="button"
+                            data-bss-disabled-mobile="true" data-bss-hover-animate="pulse"
+                            style="border-radius: 5px; border-style: none" href="index.php">Log Out</a>
                     </h2>
                 </div>
                 <h1>
@@ -260,7 +261,11 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="text/javascript">
     $('#modal-9').modal('hide');
     </script>
-    <?php endif;?>
+    <?php endif;
+    
+    unset($_SESSION['msg']);
+    
+    ?>
 
 </body>
 

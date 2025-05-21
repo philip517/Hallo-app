@@ -53,7 +53,7 @@ if(isset( $_GET['id'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Contact - Brand</title>
+    <title>Edit </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="assets/css/pikaday.min.css">
@@ -63,8 +63,11 @@ if(isset( $_GET['id'])){
     <main class="page contact-page">
         <section class="portfolio-block contact" style="padding-top: 50px;">
             <div class="container">
+            <a class="btn btn-primary text-capitalize fw-semibold text-bg-warning" role="button"
+                            data-bss-disabled-mobile="true" data-bss-hover-animate="pulse"
+                            style="border-radius: 5px; border-style: none" href="home.php">Back</a>
                 <div class="heading">
-                    <h2>&nbsp;Account</h2>
+                    <h2>&nbsp;Edit Website </h2>
                     <h2 style="color:red;"><?php echo $message;?></h2>
                 </div>
                 <form action="submit2.php?id=<?php echo $_GET['id'];?>" method="post" style="width: 493px;">

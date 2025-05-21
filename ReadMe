@@ -14,3 +14,10 @@ on windows this will be in somewhere in C:XAMPP/htdocs/
 on linux (i am currently using Ubuntu 22.04.5 LTS ) somewhere in /opt/lampp/htdocs/
 
 6. The default user for the app is user1 and the password is test1234
+
+CAUTION
+
+This app is fully educational the data storage of the password is not secure , relevant measure need to be taken in order to consider it safe some key features that will be added include
+->adding a hashing function on the retrieval and storage of passwords
+->adding a "sort by" feature
+->some browsers automatically fill in the url and password in the "edit" and "add new" pages  

@@ -136,7 +136,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
       ':password'=> $password,
       ':id'=>$id]);
   
-      $_SESSION['msg'] = "Data successfully inserted!";
+      $_SESSION['msg'] = "Data successfully Updated!";
       header("Location:home.php");
       
   
